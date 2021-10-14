@@ -1,0 +1,27 @@
+#conteiner{
+    position: absolute;
+    margin: 400px;
+    margin-top: 10px;
+    width: 650px;
+    height: 550px;
+    background:#FFFFFF;
+    
+}
+
+.for{
+   
+   position: relative;
+   left: 20%;
+
+}
+
+a{
+    position: absolute;
+    margin-top: 50px;
+    left: -1%;
+}
+
+#bot{
+    position: absolute;
+    margin-top: 10px;
+}
