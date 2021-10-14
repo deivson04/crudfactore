@@ -11,7 +11,7 @@ class ApresentarPaginaInicialController extends Controller
 {
     public function apresentacaoPagina(Request $request){
 
-        if(!Session('login')){return redirect('/');}
+        if(!Session::has('login')){return redirect('/');}
 
         return redirect('home'); 
     }

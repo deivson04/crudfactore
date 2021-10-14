@@ -15,13 +15,13 @@ class UsuarioController extends Controller
         if(!Session::has('login')){
             //return $this->login();
 
-       // }else{
-            //return redirect('home');
-       // }
+        //}else{
+            //return view('home');
+       }
         
         return $this->login();
       }
-    }
+    
     
     public function login(){
         return view('/frm_login');
@@ -39,21 +39,21 @@ class UsuarioController extends Controller
     
        $usuario = usuarios::where('usuario', $request->text_usuario)->first();
        //dd($usuario);      
-      if(array($usuario)==0){
-       
+      if(array($usuario)){
+        
       $erros_bd = ['Essa conta de usuario nao existir.'];
       //dd($erros_bd); 
       return view('frm_login', compact('erros_bd'));
         
     }
     
-      if($usuario && Hash::check($request->text_senha, $usuario->senha)){
+      if(!Hash::check($request->text_senha, $usuario->usuario)){
         $erros_bd = ['A senha esta incorreta.'];
         return view('frm_login', compact('erros_bd')); 
       }
     
       Session::put('login', 'sim');
-      Session::put('usuario', [$usuario]);
+      Session::put('usuario', ['$usuario->usuario']);
       
       
       return redirect('/');
@@ -70,7 +70,7 @@ class UsuarioController extends Controller
     public function adicionar(Request $request)
     {
        // validando o formulario
-        $validacao = $request->validate([
+       $this->validate($request,[
             'text_usuario' => 'required|between:3,30',
             'text_email' => 'required|email',  
             'text_senha' => 'required|between:6,15',
@@ -108,7 +108,7 @@ class UsuarioController extends Controller
     }
     
     
-}
+  }
 
 
 
