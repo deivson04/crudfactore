@@ -12,11 +12,11 @@ class UsuarioController extends Controller
     public function index(){
     
 
-        if(!Session::has('login')){
+        if(!session::has('login')){
             
             return $this->Login();  
         }else{
-            return view('home'); 
+            return view('/home'); 
            
         }
     }
@@ -50,8 +50,8 @@ class UsuarioController extends Controller
         return view('frm_login', compact('erros_bd')); 
       }
     
-      Session::put('login', 'sim');
-      Session::put('usuario', '$usuario');
+      session::put('login', 'sim');
+      session::put('usuario', $usuario->usuario);
       
       
       return redirect('/');

@@ -23,10 +23,13 @@
       <label for="id_text_senha">Senha</label>
       <input type="password" class="form-control" id="id_usuario" name="text_senha" placeholder="Digite a Senha">
     </div>
-  
+    
+    <div class="bott"> 
     <button id="bot" type="submit" class="btn btn-primary">Entrar</button>
+    </div>
+    
     <a href="/cadastrar">Faça seu Cadastro</a>
-  
+    </div> 
   </form>
 </div>
   @endsection
