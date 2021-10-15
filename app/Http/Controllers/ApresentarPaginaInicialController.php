@@ -9,10 +9,10 @@ use Session;
 
 class ApresentarPaginaInicialController extends Controller
 {
-    public function apresentacaoPagina(Request $request){
+    public function apresentacaoPagina(){
 
         if(!Session::has('login')){return redirect('/');}
 
-        return redirect('home'); 
+        return view('home'); 
     }
 }

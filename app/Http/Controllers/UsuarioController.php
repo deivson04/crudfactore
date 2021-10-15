@@ -13,17 +13,15 @@ class UsuarioController extends Controller
     
 
         if(!Session::has('login')){
-            //return $this->login();
-
-        //}else{
-            //return view('home');
-       }
-        
-        return $this->login();
-      }
+            
+            return $this->Login();  
+        }else{
+            return view('home'); 
+           
+        }
+    }
     
-    
-    public function login(){
+    public function Login(){
         return view('/frm_login');
     }
   
@@ -39,7 +37,7 @@ class UsuarioController extends Controller
     
        $usuario = usuarios::where('usuario', $request->text_usuario)->first();
        //dd($usuario);      
-      if(array($usuario)){
+      if(count((array)$usuario)==0) {
         
       $erros_bd = ['Essa conta de usuario nao existir.'];
       //dd($erros_bd); 
@@ -47,19 +45,26 @@ class UsuarioController extends Controller
         
     }
     
-      if(!Hash::check($request->text_senha, $usuario->usuario)){
+      if(!Hash::check($request->text_senha, $usuario->senha)){
         $erros_bd = ['A senha esta incorreta.'];
         return view('frm_login', compact('erros_bd')); 
       }
     
       Session::put('login', 'sim');
-      Session::put('usuario', ['$usuario->usuario']);
+      Session::put('usuario', '$usuario');
       
       
       return redirect('/');
        
     } 
     
+    public function Logout(){
+        //logout da sessão (destruir a sessão e redirecionar para o quadro de login)  
+     
+       // destruir a sessão
+       Session::flush();
+       return redirect('/');
+     }
      
     // inserindo dados no BD
     public function frmlogin(){
